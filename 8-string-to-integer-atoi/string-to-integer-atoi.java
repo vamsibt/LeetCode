@@ -20,7 +20,7 @@ class Solution {
             num = num*10+(s.charAt(i)-'0');
             i++;
 
-            if (sign * num > Integer.MAX_VALUE) return Integer.MAX_VALUE; // Handle overflow
+            if (sign * num > Integer.MAX_VALUE) return Integer.MAX_VALUE; 
             if (sign * num < Integer.MIN_VALUE) return Integer.MIN_VALUE;
 
             
