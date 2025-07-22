@@ -16,15 +16,13 @@ class Solution {
         long num =0;
 
         while( i<s.length() && Character.isDigit(s.charAt(i))){
-            
-
-            int digit = s.charAt(i) - '0';
-            if(num > (Integer.MAX_VALUE-digit)/10){
-                return (sign== 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-            }
 
             num = num*10+(s.charAt(i)-'0');
             i++;
+
+            if (sign * num > Integer.MAX_VALUE) return Integer.MAX_VALUE; // Handle overflow
+            if (sign * num < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+
             
         }
 
