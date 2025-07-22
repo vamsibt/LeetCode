@@ -27,10 +27,6 @@ class Solution {
         }
 
         num = num*sign;
-
-
-        if(num > Integer.MAX_VALUE) return Integer.MAX_VALUE;
-        if(num < Integer.MIN_VALUE) return Integer.MIN_VALUE;
         return (int)num;
 
 
