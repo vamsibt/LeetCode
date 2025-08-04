@@ -22,7 +22,6 @@ class Solution {
     }
 
     public void dfs(TreeNode root, int count, int[] sum){
-        if(root == null) return;
         count = count*10 + root.val;
         if(root.left == null && root.right == null){
             sum[0] += count;
