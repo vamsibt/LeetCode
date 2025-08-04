@@ -29,23 +29,33 @@ class Solution {
 
         while(!level.isEmpty()){
             int levelSize = level.size();
-            Queue<Node> temp = new LinkedList<>();
-
-            while(levelSize> 0){
+            // Queue<Node> temp = new LinkedList<>();
+            Node prev = null;
+            for(int i=0; i<levelSize; i++){
                 Node current = level.poll();
-                temp.add(current);
+                if(prev !=null){
+                    prev.next = current;
+                }
+                prev = current;
                 if(current.left!=null) level.add(current.left);
                 if(current.right!=null) level.add(current.right);
-                levelSize--;
             }
 
-            Node current = temp.poll();
-            while(!temp.isEmpty()){
-                Node forward = temp.poll();
-                current.next = forward;
-                current = forward;
-            }
-            current.next = null;
+            // while(levelSize> 0){
+            //     Node current = level.poll();
+            //     temp.add(current);
+            //     if(current.left!=null) level.add(current.left);
+            //     if(current.right!=null) level.add(current.right);
+            //     levelSize--;
+            // }
+
+            // Node current = temp.poll();
+            // while(!temp.isEmpty()){
+            //     Node forward = temp.poll();
+            //     current.next = forward;
+            //     current = forward;
+            // }
+            // current.next = null;
             
             
         }
