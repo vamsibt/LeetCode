@@ -15,26 +15,58 @@
  */
 class Solution {
     public int countNodes(TreeNode root) {
-        Queue<TreeNode> level = new LinkedList<>();
+        // Queue<TreeNode> level = new LinkedList<>();
+        // if(root == null){
+        //     return 0;
+        // }
+        // level.add(root);
+        // int count =1;
+        // while(!level.isEmpty()){
+        //     TreeNode temp = level.poll();
+
+        //     if(temp.left!=null){
+        //         level.add(temp.left);
+        //         count++;
+        //     } 
+        //     if(temp.right!=null) {
+        //         level.add(temp.right);
+        //         count++;
+        //     }
+        // }
+
+        // return count;
+
         if(root == null){
             return 0;
         }
-        level.add(root);
-        int count =1;
-        while(!level.isEmpty()){
-            TreeNode temp = level.poll();
 
-            if(temp.left!=null){
-                level.add(temp.left);
-                count++;
-            } 
-            if(temp.right!=null) {
-                level.add(temp.right);
-                count++;
-            }
+        int leftH = leftHeight(root);
+        int rightH = rightHeight(root);
+
+        if(leftH == rightH){
+            return (1 << leftH) - 1;
         }
 
-        return count;
+        return 1+countNodes(root.left)+countNodes(root.right);
+
+    }
+
+    public int leftHeight(TreeNode root){
+        int h = 0;
+        while(root!= null){
+            root = root.left;
+            h++;
+        }
+        return h;
+    }
+
+    public int rightHeight(TreeNode root){
+        int h =0;
+        while(root!=null){
+            root = root.right;
+            h++;
+        }
+        return h;
     }
 
 }
