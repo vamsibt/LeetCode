@@ -14,31 +14,56 @@
  * }
  */
 class Solution {
-    public int[] findMode(TreeNode root) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        inorder(root, arr);
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int count = 0;
-        for(int num: arr){
-             map.put(num, map.getOrDefault(num, 0) + 1);
-            if(map.get(num) > count){
-                count = map.get(num);
-            }
-        }
-        ArrayList<Integer> result = new ArrayList<>();
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            if(entry.getValue() == count){
-                result.add(entry.getKey());
-            }
-        }
+    // public int[] findMode(TreeNode root) {
+    //     ArrayList<Integer> arr = new ArrayList<>();
+    //     inorder(root, arr);
+    //     HashMap<Integer, Integer> map = new HashMap<>();
+    //     int count = 0;
+    //     for(int num: arr){
+    //          map.put(num, map.getOrDefault(num, 0) + 1);
+    //         if(map.get(num) > count){
+    //             count = map.get(num);
+    //         }
+    //     }
+    //     ArrayList<Integer> result = new ArrayList<>();
+    //     for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+    //         if(entry.getValue() == count){
+    //             result.add(entry.getKey());
+    //         }
+    //     }
 
-        int[] res = new int[result.size()];
+    //     int[] res = new int[result.size()];
+    //     for(int i=0; i<res.length; i++){
+    //         res[i] = result.get(i);
+    //     }
+
+    //     return res;
+
+    // }
+
+    // public void inorder(TreeNode root, ArrayList<Integer> arr){
+    //     if(root == null){
+    //         return;
+    //     }
+    //     inorder(root.left, arr);
+    //     arr.add(root.val);
+    //     inorder(root.right, arr);
+    // }
+    int maxCount =0;
+    int currCount= 0;
+    TreeNode prev = null;
+    public int[] findMode(TreeNode root) {
+        ArrayList<Integer> arr =  new ArrayList<>();
+        
+        inorder(root, arr);
+
+        
+        int[] res = new int[arr.size()];
         for(int i=0; i<res.length; i++){
-            res[i] = result.get(i);
+            res[i] = arr.get(i);
         }
 
         return res;
-
     }
 
     public void inorder(TreeNode root, ArrayList<Integer> arr){
@@ -46,7 +71,22 @@ class Solution {
             return;
         }
         inorder(root.left, arr);
-        arr.add(root.val);
+        if(prev == null || prev.val != root.val){
+            currCount =1;
+        } else{
+            currCount++;
+        }
+        if(currCount == maxCount){
+            arr.add(root.val);
+        }
+        else if(currCount > maxCount){
+            arr.clear();
+            arr.add(root.val);
+            maxCount = currCount;
+        }
+        prev = root;
+
         inorder(root.right, arr);
+
     }
 }
