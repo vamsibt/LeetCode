@@ -29,8 +29,8 @@ class Solution {
         if(root.val  >= low && root.val <= high){
             answer +=root.val;
         }
-        if(root.val > high){return;}
-        
+        //if(root.val > high){return;}
+
         inorder(root.right, low, high);
     }
 }
