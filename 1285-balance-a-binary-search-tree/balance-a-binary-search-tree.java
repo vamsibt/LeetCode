@@ -17,7 +17,7 @@ class Solution {
     public TreeNode balanceBST(TreeNode root) {
         ArrayList<TreeNode> arr = new ArrayList<>();
         inorder(root, arr);
-        Collections.sort(arr, (a,b)-> a.val-b.val);
+        //Collections.sort(arr, (a,b)-> a.val-b.val);
         return build_bst(arr, 0, arr.size()-1);
     }
 
