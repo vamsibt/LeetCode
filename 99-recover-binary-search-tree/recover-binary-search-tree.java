@@ -57,9 +57,9 @@ class Solution {
     TreeNode right = null;
     public void recoverTree(TreeNode root) {
         inorder(root);
-        if(right == null){
-            right = prev;
-        }
+        // if(right == null){
+        //     right = prev;
+        // }
         int temp = left.val;
         left.val = right.val;
         right.val = temp;
