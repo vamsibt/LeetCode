@@ -16,6 +16,7 @@
 class Solution {
     //SOL 1
 
+
     // int sum =0;
     // public TreeNode convertBST(TreeNode root) {
     //     HashMap<Integer, Integer> map = new HashMap<>();
@@ -44,30 +45,47 @@ class Solution {
     //     build(root.right, map);
     // }
 
-    //SOL 2
+    // //SOL 2
+
+
+    // public TreeNode convertBST(TreeNode root) {
+    //     int total = sum(root);
+    //     build(root, total);
+    //     return root;
+    // }
+    // int currentSum =0;
+
+    // public void build(TreeNode root, int total){
+    //     if(root == null){
+    //         return;
+    //     }
+    //     build(root.left, total);
+    //     currentSum += root.val;
+    //     root.val = total-currentSum+root.val;
+    //     build(root.right, total);
+    // }
+
+    // public int sum(TreeNode root){
+    //     if(root == null){
+    //         return 0;
+    //     }
+    //     return root.val+sum(root.left)+sum(root.right);
+    // }
+
+    //SOL 3
+    
     public TreeNode convertBST(TreeNode root) {
-        int total = sum(root);
-        build(root, total);
+        reverseInorder(root);
         return root;
     }
-    int currentSum =0;
-
-    public void build(TreeNode root, int total){
+    int sum = 0; 
+    public void reverseInorder(TreeNode root){
         if(root == null){
             return;
         }
-        build(root.left, total);
-        currentSum += root.val;
-        root.val = total-currentSum+root.val;
-        build(root.right, total);
+        reverseInorder(root.right);
+        sum += root.val;
+        root.val = sum;
+        reverseInorder(root.left);
     }
-
-    public int sum(TreeNode root){
-        if(root == null){
-            return 0;
-        }
-        return root.val+sum(root.left)+sum(root.right);
-    }
-
-    
 }
