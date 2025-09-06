@@ -14,21 +14,35 @@
  * }
  */
 class Solution {
+    // public TreeNode insertIntoBST(TreeNode root, int val){
+    //     if(root == null){
+    //         return new TreeNode(val);
+    //     }
+    //     if(root.val < val){
+    //         if(root.right == null){
+    //             root.right = new TreeNode(val);
+                
+    //         }
+    //         insertIntoBST(root.right, val);
+    //     }else if(root.val > val){
+    //         if(root.left == null){
+    //             root.left = new TreeNode(val);
+    //         }
+    //         insertIntoBST(root.left, val);
+    //     }
+
+    //     return root;
+    // }
+
     public TreeNode insertIntoBST(TreeNode root, int val){
         if(root == null){
             return new TreeNode(val);
         }
+
         if(root.val < val){
-            if(root.right == null){
-                root.right = new TreeNode(val);
-                
-            }
-            insertIntoBST(root.right, val);
-        }else if(root.val > val){
-            if(root.left == null){
-                root.left = new TreeNode(val);
-            }
-            insertIntoBST(root.left, val);
+            root.right = insertIntoBST(root.right, val);
+        } else {
+            root.left = insertIntoBST(root.left, val);
         }
 
         return root;
